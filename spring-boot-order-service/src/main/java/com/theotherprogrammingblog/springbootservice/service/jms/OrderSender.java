@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderSender {
 
-    private  static final String ORDER_TOPIC="book.order.placed";
+    private  static final String ORDER_PLACED="order.placed";
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderSender.class);
 
     @Autowired
     private JmsTemplate jmsTemplate;
 
 
-    public void sendOrder(BookOrder bookOrder) {
+    public void placeOrder(BookOrder bookOrder) {
         LOGGER.info("Order placed: "+bookOrder.toString());
-        jmsTemplate.convertAndSend(ORDER_TOPIC, bookOrder);
+        jmsTemplate.convertAndSend(ORDER_PLACED, bookOrder);
     }
 
 

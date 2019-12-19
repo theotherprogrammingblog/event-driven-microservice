@@ -23,15 +23,15 @@ public class FulfillmentReceiver {
     private static final Logger LOGGER = LoggerFactory.getLogger(FulfillmentReceiver.class);
 
 
-    private  static final String BILLING_ORDER_PROCESSED="billing.order.processed";
+    private  static final String ORDER_PROCESSED="order.processed";
 
-    @JmsListener(destination = BILLING_ORDER_PROCESSED, containerFactory = "topicListenerFactory")
-    public void receiveBillingOrderProcessed(@Payload BookOrder bookOrder,
+    @JmsListener(destination = ORDER_PROCESSED, containerFactory = "topicListenerFactory")
+    public void receiveOrderProcessed(@Payload BookOrder bookOrder,
                                     @Headers MessageHeaders headers,
                                     Message message,
                                     Session session) {
-        LOGGER.info("Message received from topic: "+ BILLING_ORDER_PROCESSED);
+        LOGGER.info("Message received from topic: "+ ORDER_PROCESSED);
         LOGGER.info("received data <" + bookOrder + ">");
-        fulfillmentSender.sendBillingOrderMailed(bookOrder);
+        fulfillmentSender.sendOrderMailed(bookOrder);
     }
 }

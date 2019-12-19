@@ -10,21 +10,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BillingOrderSender {
-    private  static final String BILLING_ORDER_PROCESSED="billing.order.processed";
-    private  static final String BILLING_ORDER_CANCELLED="billing.order.cancelled";
+    private  static final String ORDER_PROCESSED="order.processed";
+    private  static final String ORDER_CANCELLED="order.cancelled";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BillingOrderSender.class);
 
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void sendBookOrderCancelled(BookOrder bookOrder){
-        LOGGER.info("Billing Cancelled: "+bookOrder.toString());
-        jmsTemplate.convertAndSend(BILLING_ORDER_CANCELLED, bookOrder);
+    public void sendOrderCancelled(BookOrder bookOrder){
+        LOGGER.info("Order Cancelled: "+bookOrder.toString());
+        jmsTemplate.convertAndSend(ORDER_CANCELLED, bookOrder);
     }
 
-    public void sendBillingOrderProcessed(BookOrder bookOrder){
-        LOGGER.info("Billing Processed: "+bookOrder.toString());
-        jmsTemplate.convertAndSend(BILLING_ORDER_PROCESSED, bookOrder);
+    public void sendOrderProcessed(BookOrder bookOrder){
+        LOGGER.info("Order Processed: "+bookOrder.toString());
+        jmsTemplate.convertAndSend(ORDER_PROCESSED, bookOrder);
     }
 }

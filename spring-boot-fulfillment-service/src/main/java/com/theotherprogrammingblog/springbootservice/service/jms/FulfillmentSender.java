@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FulfillmentSender {
-    private  static final String BILLING_ORDER_MAILED="billing.order.mailed";
+    private  static final String ORDER_MAILED="order.mailed";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FulfillmentSender.class);
 
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void sendBillingOrderMailed(BookOrder bookOrder){
+    public void sendOrderMailed(BookOrder bookOrder){
         LOGGER.info("Order Mailed: "+bookOrder.toString());
-        jmsTemplate.convertAndSend(BILLING_ORDER_MAILED, bookOrder);
+        jmsTemplate.convertAndSend(ORDER_MAILED, bookOrder);
     }
 }

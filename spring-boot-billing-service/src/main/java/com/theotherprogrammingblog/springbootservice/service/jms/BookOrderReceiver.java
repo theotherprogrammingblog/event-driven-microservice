@@ -22,15 +22,15 @@ public class BookOrderReceiver {
     private BillingOrderSender billingOrderSender;
     private static final Logger LOGGER = LoggerFactory.getLogger(BookOrderReceiver.class);
 
-    private  static final String BOOK_ORDER_PLACED="book.order.placed";
+    private  static final String ORDER_PLACED="order.placed";
 
-    @JmsListener(destination = BOOK_ORDER_PLACED, containerFactory = "topicListenerFactory")
-    public void receiveBookOrderPlaced(@Payload BookOrder bookOrder,
+    @JmsListener(destination = ORDER_PLACED, containerFactory = "topicListenerFactory")
+    public void receiveOrderPlaced(@Payload BookOrder bookOrder,
                                     @Headers MessageHeaders headers,
                                     Message message,
                                     Session session) {
-        LOGGER.info("Message received from topic: "+ BOOK_ORDER_PLACED);
+        LOGGER.info("Message received from topic: "+ ORDER_PLACED);
         LOGGER.info("received data <" + bookOrder + ">");
-        billingOrderSender.sendBillingOrderProcessed(bookOrder);
+        billingOrderSender.sendOrderProcessed(bookOrder);
     }
 }

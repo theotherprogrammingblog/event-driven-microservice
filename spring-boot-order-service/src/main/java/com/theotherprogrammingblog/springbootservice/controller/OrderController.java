@@ -17,7 +17,7 @@ public class OrderController {
 
     @PostMapping("/place-order")
     public ResponseEntity<String> placeOrder (@RequestBody BookOrder bookOrder){
-        orderSender.sendOrder(bookOrder);
+        orderSender.placeOrder(bookOrder);
         return new ResponseEntity( bookOrder, HttpStatus.OK);
     }
 

@@ -26,17 +26,7 @@ public class SpringJmsApplicationTest {
 
   @Test
   public void testReceive() throws Exception {
-
-    System.out.print("hello");
-   // sender.send("order-001");
-   // sender.send("order-002");
-   // sender.send("order-003");
-   // sender.send("order-004");
-
     BookOrder bookOrder= new BookOrder();
-    billingOrderSender.sendBillingOrderProcessed(bookOrder);
-
-    //receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
-    //assertThat(receiver.getLatch().getCount()).isEqualTo(0);
+    billingOrderSender.sendOrderProcessed(bookOrder);
   }
 }
